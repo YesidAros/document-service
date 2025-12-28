@@ -1,98 +1,103 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Document Service (NestJS + MongoDB)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend API para gestión de documentos con versionado, control de acceso y persistencia en MongoDB.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este proyecto fue desarrollado como parte de una prueba técnica para un proceso de selección. Cubre: diseño de datos, endpoints REST, persistencia con Mongoose, y buenas prácticas estructurales.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Características
 
-## Project setup
+- CRUD de documentos
+- Versionado de documentos (estructura diseñada)
+- Persistencia en MongoDB (Atlas)
+- Diseño modular con NestJS
+- Validación y estructura de DTOs
+- Buenas prácticas en arquitectura
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## Estructura del proyecto
 
-```bash
-# development
-$ npm run start
+src/
+├── app.module.ts
+├── main.ts
+├── documents/
+│   ├── dto/
+│   │   ├── create-document.dto.ts
+│   │   └── update-document.dto.ts
+│   ├── schemas/
+│   │   ├── document.schema.ts
+│   │   └── document-version.schema.ts
+│   │   └── audit.log.schema.ts
+│   ├── documents.controller.ts
+│   ├── documents.service.ts
+│   └── documents.module.ts
+├── audit/
+├── common/
 
-# watch mode
-$ npm run start:dev
 
-# production mode
-$ npm run start:prod
-```
+## Tecnologías usadas
 
-## Run tests
+| Tecnología | Propósito |
+|------------|-----------|
+| NestJS | Framework backend |
+| MongoDB Atlas | Base de datos NoSQL |
+| Mongoose | ODM (modelos y esquemas) |
+| @nestjs/config | Manejo de variables de entorno |
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
+## Configuración y ejecución
 
-# test coverage
-$ npm run test:cov
-```
+### 1. Clonar el repositorio
 
-## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+git clone https://github.com/YesidAros/document-service.git
+cd document-service
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Instalar dependencias
+npm install
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+### 3. archivo de entorno .env
+MONGO_URI=<tu_connection_string_de_MongoDB_Atlas>
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 4. Levantar el servidor de desarrollo
+npm run start:dev
 
-## Resources
+### 5. Servidor iniciado
+http://localhost:3000
 
-Check out a few resources that may come in handy when working with NestJS:
+## Endpoints Principales
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### 1. Crear Documento
+POST /documents
+{
+  "title": "Contrato de prueba",
+  "description": "Descripción",
+  "taxonomy": {
+    "domain": "legal",
+    "category": "contratos",
+    "type": "servicios"
+  }
+}
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 2. Listar Documentos
+GET /documents
 
-## Stay in touch
+### 3. Obtener Documentos por ID
+GET /documents/:id
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### 4. Actualizar Documento 
+PATCH /documents/:id
 
-## License
+{
+   "title": "Nuevo título"
+}
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 5. Eliminar Documento 
+DELETE /documents/:id
+
+
+## Autor
+Yesid Aros
